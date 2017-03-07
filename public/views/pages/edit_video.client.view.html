@@ -1,0 +1,188 @@
+<div class="container">
+  <div class="panel panel-default">
+    <div class="panel-heading">TRANSFORM A VIDEO</div>
+    <div class="panel-body">
+
+      <div class="row" ng-controller="TransformController">
+          <div class="col-sm-8" class="bs-callout">
+            <div class="embed-responsive embed-responsive-4by3">
+              <video width="320" height="240" ng-src="{{ videoDetails.url | trustUrl }}" poster="" controls >
+                Your browser does not support the video tag.
+              </video>
+            </div>
+
+            <h5>No of Views:  {{ views.counter }}</h5>
+
+            <form name="updateForm" ng-submit="updateVideo()">
+                <div class="form_group">
+                    <label path="title"> Title: </label>
+                    <div class="form_controls">
+                        <input type="text" class="form-control" placeholder="Title" ng-model="videoDetails.title" required autofocus>
+                    </div>
+                </div>
+
+                <input type="hidden" ng-model="videoDetails.format" >
+
+                <div class="form_group">
+                    <label path="title"> Description: </label>
+                    <div class="form_controls">
+                        <textarea class="form-control" placeholder="Description" ng-model="videoDetails.description" required></textarea>
+                    </div>
+                </div>
+
+                <div class="form_group">
+                    <label path="title"> Tag: </label>
+                    <div class="form_controls">
+                      <input type="text" class="form-control" placeholder="Tag" ng-model="videoDetails.tag">
+                    </div>
+                </div>
+
+                <!-- Add Video Caption -->
+                <div class="form_group">
+                    <label path="title"> Add Video Caption </label>
+                    <div class="form_controls">
+                      <input type="text" class="form-control" placeholder="Add Video Caption" ng-model="videoDetails.caption">
+                    </div>
+                </div>
+
+                <!-- Add format -->
+                <div class="form_group">
+                    <label path="title"> Current format: </label>
+                    <div class="form_controls">
+                      <input type="text" class="form-control" ng-model="videoDetails.format" readonly>
+                    </div>
+                </div>
+
+                <!-- Change format -->
+                <div class="form_group">
+                    <label path="title"> Change format to: </label>
+                    <div class="form_controls">
+                      <label>OGV</label>
+                      <input type="radio"  value="ogv"  ng-model="videoDetails.format" checked>
+                      <label>FLV</label>
+                      <input type="radio"  value="flv" ng-model="videoDetails.format">
+                      <label>WEBM</label>
+                      <input type="radio"  value="webm" ng-model="videoDetails.format">
+                    </div>
+                </div>
+
+                <div class="checkbox">
+                    <label>
+                       <input type="checkbox" ng-model="videoDetails.audio"> Remove Audio
+                    </label>
+                </div>
+
+                <div class="form_group">
+                    <label path="title"> Width: </label>
+                    <input type="range" min="0" max="2000" ng-model="videoDetails.width">
+                    <input type="text" placeholder="width" readonly ng-model="videoDetails.width"><br/>
+                    <label path="title"> Height: </label>
+                    <input type="range" min="0" max="2000" ng-model="videoDetails.height">
+                    <input type="text" placeholder="height" readonly ng-model="videoDetails.height">
+                </div>
+
+                <div class="form_group">
+                    <label path="title"> Start Offset: % </label>
+                    <input type="range" min="10" max="100" ng-model="videoDetails.startOffset">
+                    <input type="text" placeholder="start Offset" readonly ng-model="videoDetails.startOffset"><br/>
+                    <label path="title"> Duration: % </label>
+                    <input type="range" min="5" max="100" ng-model="videoDetails.duration">
+                    <input type="text" placeholder="duration" readonly ng-model="videoDetails.duration">
+                </div>
+
+                <div class="form_group">
+                  <label>
+                     <input type="checkbox" ng-model="videoDetails.background"> Change Video Background
+                  </label>
+                </div>
+
+                <div class="form_group">
+                  <input type="text" class="form-control" placeholder="e.g Yellow" ng-show="videoDetails.background" ng-model="videoDetails.backgroundColor">
+                </div>
+
+                <div class="form_group" style="margin-top:10px;">
+                  <button class="btn btn-lg btn-success">Update Info</button>
+                </div>
+            </form>
+
+            <hr/>
+
+            <!-- Add this for video preview-->
+            <div class="col-md-8">
+                <div class="form_controls">
+                    <div class="preview">
+                        <label> Video with audio removed </label>
+                        <video controls ngf-src="videoDetails.preview" autoplay="autoplay">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-8">
+                <div class="form_controls">
+                    <div class="preview">
+                        <label> Video wih background color </label>
+                        <video controls ngf-src="videoDetails.colorPreview" autoplay="autoplay">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-8">
+                <div class="form_controls">
+                    <div class="preview">
+                        <label> Resized Video </label>
+                        <video controls ngf-src="videoDetails.resizedVideo" autoplay="autoplay">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-8">
+                <div class="form_controls">
+                    <div class="preview">
+                        <label> Video with New format: </label>
+                        <video controls ngf-src="videoDetails.formattedVideo" autoplay="autoplay">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-8">
+                <div class="form_controls">
+                    <div class="preview">
+                        <label> Video with caption: </label>
+                        <video controls ngf-src="videoDetails.captionedVideo" autoplay="autoplay">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-8">
+                <div class="form_controls">
+                    <div class="preview">
+                        <label> Generated Thumbnail </label>
+                        <img ng-src="{{ videoDetails.generatedThumbnail }}">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-8">
+                  <div class="form_controls">
+                      <div class="preview">
+                          <label> Trimmed Video </label>
+                          <video controls ngf-src="videoDetails.trimmedVideo" autoplay="autoplay">
+                      </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Comments By Users on the videos -->
+          <dir-disqus disqus-shortname="yourtube" disqus-identifier="{{ videoDetails.id }}"
+              disqus-title="{{ videoDetails.title }}"
+              disqus-url="{{ videoDetails.id }}">
+          </dir-disqus>
+      </div>
+     <hr />
+    </div>
+  </div>
+  </div>
+</div>
+</div>

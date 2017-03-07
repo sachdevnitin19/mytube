@@ -1,0 +1,59 @@
+<div class="container"
+  ng-init="vm = {title: 'Are you sure?', message: 'Are you really <b>sure</b> you want to do this?', confirmText: 'Yes <i class=\'glyphicon glyphicon-ok\'></i>', cancelText: 'No <i class=\'glyphicon glyphicon-remove\'></i>'}">
+  <div class="panel panel-default">
+    <div class="panel-heading">MY UPLOADED VIDEOS</div>
+    <div class="panel-body">
+
+      <div class="row" ng-controller="VideoController">
+
+          <div class="col-sm-4" ng-repeat="videos in myVideos" class="bs-callout">
+            <h5>{{ videos.title }}</h5>
+            <!-- 4:3 aspect ratio -->
+            <div class="embed-responsive embed-responsive-4by3">
+              <video width="320" height="240" poster="" controls >
+                <source ng-src="{{ videos.url | trustUrl }}" type="video/webm">
+                <source ng-src="{{ videos.url | trustUrl }}" type="video/mp4">
+                <source ng-src="{{ videos.url | trustUrl }}" type="video/ogg">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+            <p> {{ videos.description }}</p>
+            <a href="/my_videos/{{ videos.public_id }}" class="btn" /> Edit </a>
+            <button
+              class="btn btn-danger"
+              mwl-confirm
+              title="{{ vm.title }}"
+              message="{{ vm.message }}"
+              confirm-text="{{ vm.confirmText }}"
+              cancel-text="{{ vm.cancelText }}"
+              placement="{{ placement }}"
+              on-confirm="deleteVideo(videos.public_id)"
+              on-cancel="vm.cancelClicked = true"
+              confirm-button-type="danger"
+              cancel-button-type="default"
+              >
+              Delete
+            </button>
+          </div>
+
+      </div>
+
+     <hr />
+
+
+    </div>
+  </div>
+    <div class="panel-footer text-center">
+      <ul class="list-inline">
+        <li><i class="ion-star"></i> stars</li>
+        <li><i class="ion-fork-repo"></i> forks</li>
+        <li><i class="ion-pull-request"></i> issues</li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="text-center">
+  <a class="btn btn-default" href="https://github.com/goodheads/yourtube"><i class="ion-social-github"></i> GitHub project</a>
+  <a class="btn btn-default" href="https://github.com/goodheads/yourtube/issues/new"><i class="ion-bug"></i> Report issue</a>
+</div>
+</div>
