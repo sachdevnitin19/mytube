@@ -24,9 +24,11 @@ module.exports = {
         }
         size = part.byteCount;
         fileName = part.filename;
+        console.log("size:"+size+"filename:"+fileName);
       });
       form.on('file', function(name, file){
         cloudinary.uploader.upload(file.path, function(response){
+          console.log("before response");
           return res.json({ response: response });
         }, { resource_type: "video" });
       });

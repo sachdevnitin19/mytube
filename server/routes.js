@@ -9,7 +9,6 @@ module.exports = function(app) {
 
   app.post('/api/login',    User.authenticate);
   app.post('/api/register', User.registerUser);
-
   app.post('/api/upload', token.ensureAuthenticated, Upload.uploadVideo);
   app.post('/api/view/increment', View.increment);
   app.get('/api/view/:public_id', View.retrieveEachView);

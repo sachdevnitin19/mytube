@@ -28,10 +28,13 @@ module.exports = {
 
     video.save(function(err, result) {
       if (err) {
+        console.log(err);
         res.status(500).json({ message: err.message });
       }
+      else{
+          return res.status(200).json({ success: true, message: "Video Published successfully!" });
+      }
 
-      return res.status(200).json({ success: true, message: "Video Published successfully!" });
     });
   },
 

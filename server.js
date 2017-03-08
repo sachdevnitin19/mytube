@@ -1,10 +1,10 @@
-//require('dotenv').load();
+require('dotenv').load();
 var  express       = require('express'),
      morgan        = require('morgan'),
      bodyParser    = require('body-parser'),
      mongoose      = require('mongoose'),
      cors          = require('cors'),
-     //testdb        = require('./config/testdb'),
+     testdb        = require('./config/testdb'),
      route         = require('./server/routes');
 
 var port = process.env.PORT || 3000;
@@ -12,16 +12,7 @@ var port = process.env.PORT || 3000;
 /**
  * Connect to MongoDB.
  */
-//testdb.dbconnect();
-mongoose.Promise = global.Promise;//to solve the promise warning after login.
-mongoose.connect("mongodb://127.0.0.1:27017/yourtube",function(err){
-  if(err){
-    console.log("failed to connect to MongoDB. error:"+err);
-  }
-  else{
-    console.log("connected to MongoDB");
-  }
-});
+testdb.dbconnect();
 
 
 /**
