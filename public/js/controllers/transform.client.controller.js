@@ -3,7 +3,7 @@ app.controller('TransformController', ['$scope','$localStorage','$routeParams','
   Video.retrieveEachVideoDetails($routeParams.id, function(success, data){
     if(success){
       $scope.videoDetails = data.video;
-
+      console.log($scope.videoDetails.title);
       var viewDetails = {
         public_id : $routeParams.id
       };

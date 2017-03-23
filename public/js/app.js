@@ -16,6 +16,7 @@ var app = angular
               'mwl.confirm',
               'angularUtils.directives.dirDisqus',
               'satellizer',
+              'angular-filepicker',
               'angularUtils.directives.dirDisqus'])
   .config(['cfpLoadingBarProvider','$authProvider', 'cloudinaryProvider','$httpProvider', function(cfpLoadingBarProvider, $authProvider, cloudinaryProvider, $httpProvider) {
 

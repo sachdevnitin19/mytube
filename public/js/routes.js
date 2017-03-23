@@ -1,6 +1,6 @@
-var appRoutes = angular.module('appRoutes', []);
+var appRoutes = angular.module('appRoutes', ['angular-filepicker']);
 
-appRoutes.config(['$routeProvider', '$locationProvider', '$sceDelegateProvider', function($routeProvider, $locationProvider, $sceDelegateProvider){
+appRoutes.config(['$routeProvider','filepickerProvider','$locationProvider', '$sceDelegateProvider', function($routeProvider,filepickerProvider, $locationProvider, $sceDelegateProvider){
   $routeProvider
     .when('/', {
         templateUrl: './views/pages/home.client.view.html'
@@ -20,8 +20,9 @@ appRoutes.config(['$routeProvider', '$locationProvider', '$sceDelegateProvider',
         }
     })
     .when('/upload', {
-        templateUrl: './views/pages/upload.client.view.html',
+        templateUrl: './views/pages/upload.client.view2.html',
         controller: 'UploadController',
+        controllerAs:'uploadctrl',
         resolve: {
          loginRequired: loginRequired
        }
@@ -52,11 +53,10 @@ appRoutes.config(['$routeProvider', '$locationProvider', '$sceDelegateProvider',
          loginRequired: loginRequired
        }
     })
-    .when('/page/about', {
-        templateUrl: './views/pages/about.client.view.html'
-    })
 
     .otherwise({ redirectTo: '/' });
+
+    filepickerProvider.setKey('AUShvu37NQiOt12aaM8zrz');
 
     function skipIfLoggedIn($q, $auth) {
        var deferred = $q.defer();
