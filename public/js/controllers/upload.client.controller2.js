@@ -1,4 +1,4 @@
-app.controller('UploadController',function(filepickerService,$http,$localStorage){
+app.controller('UploadController',function(filepickerService,$http,$localStorage,$location){
 
 	var appl=this;
 	appl.obj={};
