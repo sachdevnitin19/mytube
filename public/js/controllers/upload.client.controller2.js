@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 app.controller('UploadController',function(filepickerService,$http,$localStorage,toastr,$location){
+=======
+app.controller('UploadController',function(filepickerService,$http,$localStorage,$location){
+>>>>>>> 04f4134c8de042e681e8f2d007a1835499003e4e
 
 	var appl=this;
 	appl.obj={};
