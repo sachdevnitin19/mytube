@@ -1,4 +1,4 @@
-app.controller('UploadController',function(filepickerService,$http,$localStorage){
+app.controller('UploadController',function(filepickerService,$http,$localStorage,toastr,$location){
 
 	var appl=this;
 	appl.obj={};
@@ -25,6 +25,7 @@ app.controller('UploadController',function(filepickerService,$http,$localStorage
 		console.log(this.video);
         $http.post('/api/upload2',this.video).then(function(data){
         	console.log(data);
+        	toastr.success(data.message,'success',{timeOut: 2000});
         	$location.path('/');
         })
 	};

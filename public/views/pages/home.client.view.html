@@ -1,12 +1,12 @@
 <div class="container">
   <div class="panel panel-default">
-    <div class="panel-heading">Recommended</div>
+    <div class="panel-heading ">Recommended</div>
     <div class="panel-body">
 
       <div class="row" ng-controller="HomeController">
 
           <div class="col-sm-4" ng-repeat="videos in allVideos" class="bs-callout">
-            <h5>{{ videos.title }}</h5>
+            <h5 class="lead">{{ videos.title }}</h5>
             <!-- 4:3 aspect ratio -->
             <a href="/my_videos/{{ videos.public_id }}" />
               <div class="embed-responsive embed-responsive-4by3">
