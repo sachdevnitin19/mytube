@@ -25,7 +25,7 @@ var app = express();
  */
 
 // Force HTTPS on heroku
-//if(process.env.NODE_ENV === 'production') {
+if(process.env.NODE_ENV === 'production') {
   app.enable("trust proxy");
   app.use (function (req, res, next) {
       if(req.secure) {
@@ -36,7 +36,7 @@ var app = express();
         res.redirect('https://' + req.headers.host + req.url);
       }
   });
-//}
+}
 
 app.use(cors());
 app.use(morgan('dev'));
