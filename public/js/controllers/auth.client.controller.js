@@ -5,7 +5,9 @@ app.controller('AuthController', ['$scope','$location','$auth','$localStorage', 
         .then(function() {
           $localStorage.email = $scope.user.email;
           toastr.success('You have successfully signed in!');
+          console.log($scope.user);
           $location.path('/');
+
         })
         .catch(function(error) {
           toastr.error(error.data.message);
